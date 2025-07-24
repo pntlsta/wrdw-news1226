@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    h2{
+        color: #0fefff;
+    }
+
+    .p-bio{
+        font-size: clamp(1rem, 1.2vw, 1.2rem);
+    }
+
+    i{
+        font-size: clamp(.5rem, 1.2vw, 1.2rem);
+    }
+
+    a{
+        text-decoration: none;
+    }
+</style>
+
+
+<body>    
+    <div class="container">
+        <div class="menu">
+            <div class="logo">
+                <a href="index.html" class=""><img src="assets/gray_logo.png" class="logo-img" style="width: 50%;"></a>
+            </div>
+
+            <div class="menu-items">
+                <a href="index.html" class="portfolio" >Home</a>
+                <a href="portfolio.html" class="portfolio">Portfolio</a>
+                <a href="about.html" class="about" style="color: #0fefff;">About</a>
+                <a href="https://www.wrdw.com/page/advertising-opportunities/" target="_blank"  class="btnFont contact" style="padding: 1rem; background-color: var(--btnColors); border-radius: 5rem;"><span>CONTACT</span></a>
+            </div>
+        </div>
+
+        <div class="bio-wrapper">
+            <div class="bio-wrapper-left">
+                <img id="emp-img" src="" alt="" class="reveal-left">
+                
+                <br><br>
+                
+                <p class="reveal-left"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;&nbsp;<span id="emp-phone"></span></p>
+                <p class="reveal-left"><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;&nbsp;<span id="emp-email"></span></p>
+            </div>
+
+            <div class="bio-wrapper-right" >
+                <!-- NAME -->
+                <h2 id="emp-name" class="reveal-right"></h2>
+                <!-- POSITION -->
+                <p id="emp-position" style="color: #0fefff;" class="reveal-right"></p>
+                <br>
+                <!-- BIOGRAPHY -->
+                <p id="emp-bio" class="p-bio reveal-right"></p>
+
+                <br><br>
+                
+                <a href="https://www.wrdw.com/page/advertising-opportunities/" class="button-1 reveal-right" style="text-decoration: none;" target="blank"><span id="emp-btn"></span></a>
+            </div>
+        </div>
+
+        <div class="services">
+            <div class="services-wrapper">
+                <div class="services-1  reveal">
+                    <div class="services-box">
+                        <img src="assets/broadcast.png" alt="">
+                    </div>
+                    <p>Broadcast</p>
+                </div>
+
+                <div class="services-1 reveal">
+                    <div class="services-box">
+                        <img src="assets/tv.png" alt="">
+                    </div>
+                    <p>Streaming TV</p>
+                </div>
+
+                <div class="services-1 reveal">
+                    <div class="services-box">
+                        <img src="assets/radio.png" alt="">
+                    </div>
+                    <p>Streaming Radio</p>
+                </div>
+
+                <div class="services-1 reveal">
+                    <div class="services-box">
+                        <img src="assets/digital.png" alt="">
+                    </div>
+                    <p>Digital</p>
+                </div>
+
+                <div class="services-1 reveal">
+                    <div class="services-box">
+                        <img src="assets/outdoor.png" alt="">
+                    </div>
+                    <p>Outdoor</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="collaborate-bg">
+            <div class="collaborate reveal">
+                <h3 class="reveal-right">Collaborate With Us!</h3>
+                <h1 class="reveal-left">Fuel Your Next Vision</h1>
+                <a href="https://www.wrdw.com/page/advertising-opportunities/" class="button-1 btnFont" target="_blank" style="width: auto;"><span style="font-size: 1rem;" id="emp-btn">ADVERTISE WITH US</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-left">
+            &copy; WRDW 1226
+        </p>
+
+        <p class="footer-right">
+            Coded by <a href="https://www.jcorales.art">Jae Corales</a> - fueled by coffee and deadlines.
+        </p>
+    </div>
+
+<!-- ANIMATIONS -->
+    <script src="https://kit.fontawesome.com/74ef3fc04a.js" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("mousemove", function(e) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const offsetX = e.clientX - centerX;
+            const offsetY = e.clientY - centerY;
+
+            const elements = [
+                { selector: ".char-1", strength: 0.02, flip: -1 },
+                { selector: ".char-2", strength: 0.03, flip: -1 },
+                { selector: ".char-3", strength: 0.075, flip: 1 }
+            ];
+
+            elements.forEach(({ selector, strength, flip }) => {
+                const el = document.querySelector(selector);
+                if (el) {
+                const x = offsetX * strength;
+                const y = offsetY * strength;
+                el.style.transform = `translate(${x}px, ${y}px) rotate(0deg) scaleX(${flip})`;
+                }
+            });
+
+            const logo = document.querySelector(".logo-hero");
+            if (logo) {
+                const rotX = -(offsetY / centerY) * 15;
+                const rotY = (offsetX / centerX) * 15;
+                logo.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            }
+        });
+
+
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            const windowHeight = window.innerHeight;
+            const revealPoint = 100;
+
+            reveals.forEach((el) => {
+                const elementTop = el.getBoundingClientRect().top;
+
+                if (elementTop < windowHeight - revealPoint) {
+                el.classList.add('active');
+                } else {
+                el.classList.remove('active'); // optional: remove if you only want to animate once
+                }
+            });
+            }
+
+            window.addEventListener('scroll', revealOnScroll);
+            window.addEventListener('load', revealOnScroll);
+    </script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        fetch('employees.json')
+            .then(response => response.json())
+            .then(data => {
+
+                const employee = data.find(e => e.id === id);
+                if (employee){
+                    document.getElementById('emp-img').src = employee.image;
+                    document.getElementById('emp-name').textContent = employee.name;
+                    document.getElementById('emp-position').textContent = employee.position;
+                    document.getElementById('emp-phone').textContent = employee.phone;
+                    document.getElementById('emp-email').textContent = employee.email;
+                    document.getElementById('emp-bio').innerText = employee.bio;
+                    document.getElementById('emp-btn').textContent = employee.btn;
+                    document.title = employee.name;
+                } 
+
+                else{
+                    document.getElementById('employee-profile').innerHTML = "<p>Employee Not Found.</p>"
+                }
+
+            })
+
+            .catch(err => {
+                console.error("Failed to load employee data.", err);
+            });
+    </script>
+</body>
+</html>
