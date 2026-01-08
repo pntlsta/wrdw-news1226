@@ -1051,12 +1051,14 @@ strong{
     transition: transform 0.3s ease-in-out;
 }
 
+
 .channel-icon-container:hover{
     transform: scale(1.05);
 }
 
 .channel-icon-container h3{
     color: var(--dark-button);
+    line-height: 20px;
 }
 
 .channel-icon-container img{
